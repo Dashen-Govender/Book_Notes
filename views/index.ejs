@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet"/>
+    <title>Book Notes</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form id="form" method="post">
+        <div class="banner">
+          <label>WELCOME TO OPEN LIBRARY</label>
+        </div>
+        <div class="review">
+          <h2>Choose a book to Review:</h2>
+          <div class="scrolling-list">
+            <div class="books"></div>
+          </div>
+        </div>
+        <div class="reviewed">
+          <h2>Reviewed Books:</h2>
+          <div class="scrolling-list2">
+            <div class="rbooks">
+              <% for (let item of JSON.parse(listItems)) { const source =
+              "https://covers.openlibrary.org/b/id/" + item.coverid + "-L.jpg";
+              const coverid = item.coverid; %>
+              <div id="rbook<%= coverid %>" class="covers2">
+                <img
+                  type="image"
+                  class="rbookImg"
+                  src="<%=source%>"
+                  id="r<%=coverid%>"
+                />
+                <% if (item.rating === 0) { %>
+                <img class="stars" src="assets/0stars.png" />
+                <% } else if (item.rating === 1) { %>
+                <img class="stars" src="assets/0halfstars.png" />
+                <% } else if (item.rating === 2) { %>
+                <img class="stars" src="assets/1stars.png" />
+                <% } else if (item.rating === 3) { %>
+                <img class="stars" src="assets/1halfstars.png" />
+                <% } else if (item.rating === 4) { %>
+                <img class="stars" src="assets/2stars.png" />
+                <% } else if (item.rating === 5) { %>
+                <img class="stars" src="assets/2halfstars.png" />
+                <% } else if (item.rating === 6) { %>
+                <img class="stars" src="assets/3stars.png" />
+                <% } else if (item.rating === 7) { %>
+                <img class="stars" src="assets/3halfstars.png" />
+                <% } else if (item.rating === 8) { %>
+                <img class="stars" src="assets/4stars.png" />
+                <% } else if (item.rating === 9) { %>
+                <img class="stars" src="assets/4halfstars.png" />
+                <% } else if (item.rating === 10) { %>
+                <img class="stars" src="assets/5stars.png" />
+                <% } %>
+                <textarea class="reviewdisplay" readonly><%= item.review %></textarea>
+                <input
+                  type="submit"
+                  class="rbutton"
+                  value="select"
+                  name="rBook"
+                  id="<%= coverid %>"
+                  formaction="/selectreviewed"
+                />
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <% if (locals.listItems) { %>
+  <script type="module">
+    $(".container").addClass("invisible");
+    var items = JSON.parse(`<%-locals.listItems%>`);
+    var books = JSON.parse(`<%-locals.bookids%>`);
+    for (var i = 0; i <= 99; i++) {
+      var coverid = books[i].coverid;
+      var olid = books[i].olkey.slice(7);
+      var bookreviewed = items.find(
+        (item) => item.coverid === parseInt(coverid)
+      );
+      if (bookreviewed === undefined) {
+        $(".books").append(
+          `<div id="book${coverid}"><img class="bookImg" src="https://covers.openlibrary.org/b/id/${coverid}-L.jpg"  id="Review${coverid}" /></div>`
+        );
+        $(`#book${coverid}`).addClass("covers");
+        $(`#book${coverid}`).append(
+          `<input type="submit" class="button" name="Book" value="${coverid}" formaction="/selectreview"/>`
+        );
+      }
+    }
+    $(".bookImg").addClass("block");
+    $(".button").click(function () {
+      $(this).toggleClass("clicked");
+    });
+
+    $(".rbutton").on("click", function() {
+      const coverid = $(this).attr("id");
+      $(this).addClass("invisible");
+      $(this).val(coverid);
+    });
+    $(".container").removeClass("invisible");
+  </script>
+  <% } %>
+</html>

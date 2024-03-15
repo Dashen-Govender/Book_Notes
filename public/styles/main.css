@@ -1,0 +1,323 @@
+html,
+body,
+.container,
+form {
+  display: flex;
+  flex-direction: column;
+  height: 920px;
+  width: 100vw;
+  align-items: center;
+  background-color: bisque;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.banner label {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 50px;
+  font-style: normal;
+}
+
+.review {
+  height: 280px;
+  width: 800px;
+  border: 1px black solid;
+  margin-bottom: 10px;
+  background-color: lightcyan;
+}
+
+.reviewed {
+  height: 560px;
+  width: 800px;
+  border: 1px black solid;
+  background-color: lightcyan;
+}
+
+.scrolling-list {
+  display: flex;
+  flex-direction: column;
+  height: 240px;
+  width: 800px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.scrolling-list2 {
+  display: flex;
+  flex-direction: column;
+  height: 520px;
+  width: 800px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.review h2 {
+  align-items: center;
+  text-align: center;
+  margin: 5px 0px;
+  font-size: 20px;
+}
+
+.reviewed h2 {
+  align-items: center;
+  text-align: center;
+  margin: 5px 0px;
+  font-size: 20px;
+}
+
+.books {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+
+.rbooks {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  height: 210px;
+}
+
+.covers {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 200px;
+  width: fit-content;
+  margin: 5px 10px;
+}
+
+.covers2 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 553px;
+  width: 300px;
+  margin: 5px 10px;
+}
+
+.rbookImg {
+  align-self: center;
+}
+
+.stars {
+  display: flex;
+  width: 110px;
+  margin: 10px 0px;
+  align-self: center;
+  justify-content: center;
+}
+
+.block,
+.rbookImg {
+  height: 200px;
+  width: fit-content;
+}
+
+.reviewdisplay {
+  height: 200px;
+  resize: none;
+  padding: 5px;
+}
+
+.rbutton {
+  align-self: center;
+  height: 30px;
+  width: 70px;
+  border: 0px;
+  padding: 0px;
+  z-index: 1;
+  border: 1px black solid;
+  border-radius: 15px;
+  margin: 5px 0px;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.button {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  height: 210px;
+  width: calc(100% + 10px);
+  border: 0px;
+  padding: 0px;
+  z-index: 1;
+  color: rgb(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.rbutton:hover {
+  background-color: lightgray;
+}
+
+.clicked {
+  border: 5px brown solid;
+}
+
+#grid {
+  display: grid;
+  height: 500px;
+  width: 900px;
+  grid-template-columns: 350px 490px 60px;
+  grid-template-rows: 30px 30px 390px 50px;
+  outline: 3px black solid;
+}
+
+#book {
+  display: flex;
+  position: relative;
+  align-items: center;
+  grid-area: 1 / 1 / 5 / 2;
+}
+
+#title {
+  display: flex;
+  grid-area: 1 / 2 / 2 / 3;
+  text-align: center;
+}
+
+#title input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  padding: 0px;
+  background-color: rgb(0, 0, 0, 0);
+  font-size: 20px;
+}
+
+#author {
+  display: flex;
+  grid-area: 2 / 2 / 3 / 3;
+  text-align: center;
+}
+
+#author input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  padding: 0px;
+  background-color: rgb(0, 0, 0, 0);
+  font-size: 20px;
+}
+
+#title input:focus,
+#author input:focus,
+.reviewdisplay {
+  outline: none;
+}
+
+#review {
+  display: flex;
+  flex-direction: column;
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+#review label {
+  text-align: center;
+  padding: 5px 0px;
+  font-size: 18px;
+}
+
+#review textarea {
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
+  padding: 5px;
+  margin: 10px;
+  margin-top: 0px;
+  resize: none;
+}
+
+#rating {
+  display: flex;
+  flex-direction: column;
+  grid-area: 3 / 3 / 4 / 4;
+}
+
+#rating label {
+  text-align: center;
+  padding: 5px 0px;
+  font-size: 18px;
+}
+
+#rating select {
+  width: calc(100% - 4px);
+  margin: 10px 2px;
+  margin-top: 0px;
+  height: 30px;
+  text-align: center;
+}
+
+#submit {
+  display: flex;
+  grid-area: 4 / 2 / 5 / 3;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#submit input {
+  width: 80px;
+  height: 30px;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  border-radius: 15px;
+  border: 1px black solid;
+}
+
+#submit input:hover {
+  background-color: lightgray;
+}
+
+#book img {
+  margin: 10px;
+  width: calc(100% - 20px);
+  height: fit-content;
+  max-height: 480px;
+}
+
+#book input {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  text-align: center;
+  border: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#book input:hover {
+  cursor: context-menu;
+}
+
+.form3 {
+  height: fit-content;
+  width: fit-content;
+}
+
+.invisible {
+  display: none;
+}

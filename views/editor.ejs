@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <title>Book Notes</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form id="form" method="post">
+        <div id="grid">
+          <div id="book">
+            <% const coverimg = "https://covers.openlibrary.org/b/id/" + coverid
+            + "-L.jpg"; %>
+            <img src="<%= coverimg %>" />
+            <input
+              type="text"
+              name="mixedid"
+              value="<%= coverid %>/<%= olid %>"
+            />
+          </div>
+          <div id="title">
+            <% const label = `Title: ${JSON.parse(title)}`; %>
+            <input type="text" name="title" value="<%= label %>" readonly />
+          </div>
+          <div id="author">
+            <% const label2 = `Author: ${JSON.parse(author)}`; %>
+            <input type="text" name="author" value="<%= label2 %>" readonly />
+          </div>
+          <div id="review">
+            <label>Review</label>
+            <textarea name="review"></textarea>
+          </div>
+          <div id="rating">
+            <label>Rating</label>
+            <select name="rating">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <div id="submit">
+            <input
+              type="submit"
+              value="submit"
+              formaction="/submitreview"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <%if (locals.review && locals.rating) {%>
+  <script type="text/javascript">
+    console.log("In script");
+    const review = "<%- JSON.parse(review) %>";
+    const rating = "<%- JSON.parse(rating) %>";
+    console.log(review);
+    console.log(rating);
+    $("#review textarea").text(review);
+    $("#rating select").val(rating);
+    $("#submit").html("<input type='submit' value='edit' formaction='/editreview'/> <input type='submit' value='delete' formaction='/deletereview'/>");
+  </script>
+  <%}%>
+</html>
